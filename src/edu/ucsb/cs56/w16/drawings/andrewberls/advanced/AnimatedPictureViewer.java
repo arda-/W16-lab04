@@ -7,7 +7,7 @@ import java.awt.event.*;
 /**
  * A main class to view an animation
  *
- * @author Andrew Berl
+ * @author Andrew Berls
  * @version for CS56, W14
  */
 
