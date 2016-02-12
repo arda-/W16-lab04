@@ -20,8 +20,6 @@ public class AnimatedPictureViewer {
 
     private DrawPanel panel = new DrawPanel();
     
-    private Pizza pizza = new Pizza(100, 100, 200, 300);
-    
     Thread anim;   
     private int rad = 200;
     private int x = 100;
@@ -34,8 +32,6 @@ public class AnimatedPictureViewer {
     private int degreeRed = 0;
     private int degreeGreen = 0;
     private int degreeBlue = 0;
-    
-
 
     public static void main (String[] args) {
       new AnimatedPictureViewer().go();
@@ -44,12 +40,10 @@ public class AnimatedPictureViewer {
     public void go() {
       JFrame frame = new JFrame();
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
       frame.getContentPane().add(panel);
       frame.setSize(640,480);
       frame.setTitle("John Lau's Spinning Rainbow Pizza");
       frame.setVisible(true);
-      
       frame.getContentPane().addMouseListener(new MouseAdapter() {
         public void mouseEntered(MouseEvent e){
         System.out.println("Move");
@@ -66,7 +60,6 @@ public class AnimatedPictureViewer {
           panel.repaint();        
         }
      
-
       public void mouseClicked(MouseEvent e){
 	  // increase speed of spin, up to 6 levels
 	  if(speed >=6){
@@ -82,22 +75,16 @@ public class AnimatedPictureViewer {
 
     class DrawPanel extends JPanel {
        public void paintComponent(Graphics g) {
-
         Graphics2D g2 = (Graphics2D) g;
-
          // Clear the panel first
           g2.setColor(Color.white);
           g2.fillRect(0,0,this.getWidth(), this.getHeight());
-
+	  // Create Pizza
 	  Color pizzaColor = new Color(degreeRed,degreeGreen,degreeBlue);
           g2.setColor(pizzaColor);
           PizzaWithToppings test = new PizzaWithToppings(x, y, width, height);
 	  Shape a = ShapeTransforms.rotatedCopyOf(test,rotate);
 	  g2.draw(a);
-
-
-	  
-	  
        }
     }
     
@@ -105,37 +92,23 @@ public class AnimatedPictureViewer {
 	public void run() {
 	    try {
 		while (true) {
-		    // Bounce off the walls
-		    
-		    /* if (x >= 400) { dx = -5; }
-		       if (x <= 50) { dx = 5; }
-		       
-		       x += dx;*/
-
 		    // Randomize colors
-
 		    degreeRed += 1;
 		    if(degreeRed >= 256)
 			degreeRed = 0;
-
 		    degreeGreen += 3;
 		    if(degreeGreen >= 256)
 			degreeGreen = 0;
-
 		    degreeBlue += 6;
 		    if(degreeBlue >= 256)
 			degreeBlue = 0;
-		    
 		    // Make Pizza move in circle
 		    theta += Math.toRadians(0.5*speed);
 		    x = (int)(200 + 100*Math.sin(theta));
 		    y = (int)(200 + 100*Math.cos(theta));
-
 		    rad -= 1;
-		    
 		    // Rotate Pizza itself
 		    rotate += Math.toRadians(2*speed);
-		   
 		    panel.repaint();
 		    Thread.sleep(30);
 		}
