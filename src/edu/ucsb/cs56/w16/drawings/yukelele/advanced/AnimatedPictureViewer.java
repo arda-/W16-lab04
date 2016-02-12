@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import edu.ucsb.cs56.w16.drawings.utilities.ShapeTransforms;
+import edu.ucsb.cs56.w16.drawings.utilities.GeneralPathWrapper;
+
 /**
  * A main class to view an animation of a Rubik's Cube
  *
- * @author Andrew Berls
- * @version for CS56, W14
+ * @author Yuki Mano
+ * @version for CS56, W16
  */
 
 
@@ -66,8 +69,11 @@ public class AnimatedPictureViewer {
           g2.setColor(Color.white);
           g2.fillRect(0,0,this.getWidth(), this.getHeight());
 
+	  g2.setColor(Color.BLACK);
+	  g2.drawString("An animation of a Rubik's Cube by Yuki Mano", 15 ,25);
+
           // Draw the Rubik's Cube
-	  //         g2.setColor(Color.RED);
+	  //         in a random color;
 	  int red = (int) (Math.random()*x*y %256);
 	  int green = (int) (Math.random()*x*y %256);
 	  int blue = (int) (Math.random()*x*y %256);
@@ -76,9 +82,9 @@ public class AnimatedPictureViewer {
 	      randomColor = new Color (0,0,0);
 			  
 	  g2.setColor(randomColor);
-          RubiksCube test = new RubiksCube(x, y, (25*x %26) + 1);
+          RubiksCube rc = new RubiksCube(x, y, (25*x %26) + 1);
 	    
-          g2.draw(test);
+          g2.draw(rc);
        }
     }
     
@@ -97,7 +103,7 @@ public class AnimatedPictureViewer {
             x += dx;
 	    y += dy;
             panel.repaint();
-            Thread.sleep(50);
+            Thread.sleep(20);
           }
         } catch(Exception ex) {
           if (ex instanceof InterruptedException) {
