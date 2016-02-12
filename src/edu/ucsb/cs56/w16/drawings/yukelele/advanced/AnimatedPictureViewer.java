@@ -66,11 +66,19 @@ public class AnimatedPictureViewer {
         Graphics2D g2 = (Graphics2D) g;
 
          // Clear the panel first
-          g2.setColor(Color.white);
-          g2.fillRect(0,0,this.getWidth(), this.getHeight());
 
-	  g2.setColor(Color.BLACK);
-	  g2.drawString("An animation of a Rubik's Cube by Yuki Mano", 15 ,25);
+	int r1 = (int) (Math.random()*x*y %256);
+	int g1 = (int) (Math.random()*x*y %256);
+	int b1 = (int) (Math.random()*x*y %256);
+	Color randColor = new Color (r1, g1, b1);
+	if(r1==0 && g1==0 && b1==0)
+	    randColor = new Color (255,255,255);
+	g2.setColor(randColor);
+	g2.fillRect(0,0,this.getWidth(), this.getHeight());
+
+	//signature on my animation
+	g2.setColor(Color.BLACK);
+	g2.drawString("An animation of a Rubik's Cube by Yuki Mano", 15 ,25);
 
           // Draw the Rubik's Cube
 	  //         in a random color;
@@ -94,11 +102,11 @@ public class AnimatedPictureViewer {
           while (true) {
             // Bounce off the walls
 
-            if (x >= 400) { dx = -1; }
-            if (x <= 50) { dx = 1; }
+            if (x >= 640) { dx = -5; }
+            if (x <= 0) { dx = 5; }
 
-	    if(y >= 400) { dy = -1;}
-	    if(y <= 50) { dy = 1;}
+	    if(y >= 480) { dy = -5;}
+	    if(y <= 0) { dy = 5;}
 	    
             x += dx;
 	    y += dy;
