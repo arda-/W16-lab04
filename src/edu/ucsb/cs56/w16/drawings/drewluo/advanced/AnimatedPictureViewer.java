@@ -22,13 +22,13 @@ public class AnimatedPictureViewer {
     private int y = 100;
     private int h = 100;
     private int w = 100;
-    private int strokeSize = 1;
+    private float strokeSize = 1f;
     
     private int dx = 0;
     private int dy = 5;
     private int dh = 0;
     private int dw = 0;
-    private int ds = 0;
+    private float ds = 0f;
     
     public static void main (String[] args) {
       new AnimatedPictureViewer().go();
@@ -71,6 +71,10 @@ public class AnimatedPictureViewer {
 	   g2.setColor(Color.white);
 	   g2.fillRect(0,0,this.getWidth(), this.getHeight());
 
+	   //Title of animation
+	   g2.setColor(Color.BLACK);
+	   g2.drawString("CRAZY SHIELD by Andrew Luo", 20,20);
+	   
 	   //Make random colors each time
 	   int red = (int)(Math.random()*255);
 	   int green = (int)(Math.random()*255);
@@ -79,8 +83,9 @@ public class AnimatedPictureViewer {
 	   g2.setColor(color);
 
 	   //Change the stroke size over time
-	   g2.setStroke(new BasicStroke(s));
+	   g2.setStroke(new BasicStroke(strokeSize));
 	   
+	   //Draw the shield
 	   ShieldWithEmblem shield = new ShieldWithEmblem(x, y, h, w);
 	   g2.draw(shield);
        }
@@ -99,7 +104,7 @@ public class AnimatedPictureViewer {
 			dy = 0;
 			dh = 5;
 			dw = 5;
-			ds = 1;
+			ds = 0.5f;
 		    }
 
 		    //Going right along bottom
@@ -114,7 +119,7 @@ public class AnimatedPictureViewer {
 			dy = 0;
 			dh = -5;
 			dw = -5;
-			ds = -1;
+			ds = -0.5f;
 		    }
 
 		    //Going left along top
@@ -127,6 +132,7 @@ public class AnimatedPictureViewer {
 		    y += dy;
 		    h += dh;
 		    w += dw;
+		    strokeSize += ds;
 		    panel.repaint();
 		    Thread.sleep(25);
 		}
