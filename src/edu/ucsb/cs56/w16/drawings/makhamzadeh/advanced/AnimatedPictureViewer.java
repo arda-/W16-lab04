@@ -1,14 +1,14 @@
-package edu.ucsb.cs56.w16.drawings.andrewberls.advanced;
+package edu.ucsb.cs56.w16.drawings.makhamzadeh.advanced;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 /**
- * A main class to view an animation
+ * A main class to view an animation for a Soccer Field
  *
- * @author Andrew Berl
- * @version for CS56, W14
+ * @author Matin Akhamzadeh
+ * @version for CS56, W16
  */
 
 
@@ -16,7 +16,7 @@ public class AnimatedPictureViewer {
 
     private DrawPanel panel = new DrawPanel();
     
-    private Ipod ipod = new Ipod(100, 100, 100);
+    private SoccerField soccerField = new SoccerField(100, 100, 100);
     
     Thread anim;   
     
@@ -24,7 +24,8 @@ public class AnimatedPictureViewer {
     private int y = 100;
     
     private int dx = 5;
-
+    private int dy = 5;
+    
     public static void main (String[] args) {
       new AnimatedPictureViewer().go();
     }
@@ -65,10 +66,15 @@ public class AnimatedPictureViewer {
           g2.setColor(Color.white);
           g2.fillRect(0,0,this.getWidth(), this.getHeight());
 
-          // Draw the Ipod
-          g2.setColor(Color.RED);
-          Ipod test = new Ipod(x, y, 100);
-          g2.draw(test);
+          // Draw the Soccer Field with random color
+	  int randBlue = (int)(Math.random() * 256);
+	  int randRed = (int)(Math.random() * 256);
+	  int randGreen = (int)(Math.random() * 256);
+	  Color newColor = new Color(randRed, randGreen, randBlue);
+	  
+          g2.setColor(newColor);
+          SoccerField fieldTest = new SoccerField(x, y, 100);
+          g2.draw(fieldTest);
        }
     }
     
@@ -78,10 +84,18 @@ public class AnimatedPictureViewer {
           while (true) {
             // Bounce off the walls
 
-            if (x >= 400) { dx = -5; }
-            if (x <= 50) { dx = 5; }
+	      if (x >= 250 && y>= 200){
+		  dx = -5;
+		  dy = -5;
+	      }
+	      if (x <= 50 && y<= 100){
+		  dx = 5;
+		  dy = 5;
+	      }
+ 
             
-            x += dx;                
+            x += dx;
+	    y += dy;
             panel.repaint();
             Thread.sleep(50);
           }
