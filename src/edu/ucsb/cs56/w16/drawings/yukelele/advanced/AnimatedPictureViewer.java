@@ -20,6 +20,7 @@ public class AnimatedPictureViewer {
     private DrawPanel panel = new DrawPanel();
     
     private RubiksCube rubiksCube = new RubiksCube(200, 300, 25);
+    private RubiksCube rubiksCube1 = new RubiksCube(480, 180, 25);
     
     Thread anim;   
     
@@ -75,6 +76,7 @@ public class AnimatedPictureViewer {
 	    randColor = new Color (255,255,255);
 	g2.setColor(randColor);
 	g2.fillRect(0,0,this.getWidth(), this.getHeight());
+	
 
 	//signature on my animation
 	g2.setColor(Color.BLACK);
@@ -91,8 +93,11 @@ public class AnimatedPictureViewer {
 			  
 	  g2.setColor(randomColor);
           RubiksCube rc = new RubiksCube(x, y, (25*x %26) + 1);
+	  RubiksCube rc1 = new RubiksCube(x+100, y, (25*x %26) +1);
+
 	    
           g2.draw(rc);
+	  g2.draw(rc1);
        }
     }
     
