@@ -36,7 +36,7 @@ public class AnimatedPictureComponent extends JComponent
 {  
     private Shape person;
     private double PersonHeight;
-    private double scribbleSpeed;
+    private double wobbleSpeed;
     private double amplitude = 3.2;
     private double travelSpeed;
     private double xTravel = 0;
@@ -50,7 +50,7 @@ public class AnimatedPictureComponent extends JComponent
     private double travelDistance;
 
 
-    // starting length: 300; width: 30
+    // starting length: 150
     /** Constructs an AnimatedPictureComponent with specific properties.
 	This animated picture depicts a person writing across the screen
 	@param startingX the starting x position of the person
@@ -59,17 +59,16 @@ public class AnimatedPictureComponent extends JComponent
 	across the screen
 	@param travelDistance the number of pixels the person will move
 	across the screen before stopping
-	@param scribbleSpeed the speed at which the person oscillates (or
-	scribbles) back and forth
+	@param wobbleSpeed the speed at which the person wobbles (walks) back and forth
 	@param startingSpineHeight the starting spine height (half the height of the person) of the person in pixels
     */
-    public AnimatedPictureComponent(double startingX, double startingY, double travelSpeed, double travelDistance, double scribbleSpeed, double startingSpineHeight) {
+    public AnimatedPictureComponent(double startingX, double startingY, double travelSpeed, double travelDistance, double wobbleSpeed, double startingSpineHeight) {
 	this.startingX = startingX;
 	this.startingY = startingY;
 	this.xPos = startingX;
 	this.travelSpeed = travelSpeed;
 	this.travelDistance = travelDistance;
-	this.scribbleSpeed = scribbleSpeed;
+	this.wobbleSpeed = wobbleSpeed;
 	this.startingSpineHeight = startingSpineHeight;
 
 	person = new PersonWithCube(this.xPos, this.startingY,  this.startingSpineHeight);
@@ -94,10 +93,10 @@ public class AnimatedPictureComponent extends JComponent
 	else
 	    g2.setColor(Color.BLACK); g2.draw(person);
 
-	t += scribbleSpeed;
+	t += wobbleSpeed;
 	xTravel += travelSpeed;
 	xPos = xTravel + startingX;
-	double wobble = amplitude*(1/scribbleSpeed)*Math.sin(t) + amplitude*0.8*(1/scribbleSpeed)*Math.sin(0.8*t+1.5);
+	double wobble = amplitude*(1/wobbleSpeed)*Math.sin(t) + amplitude*0.8*(1/wobbleSpeed)*Math.sin(0.8*t+1.5);
 	xPos += wobble;
 	double length = (1 - (xTravel/travelDistance))*(startingSpineHeight - PersonHeight) + PersonHeight;
 	double yPos = startingY + (startingSpineHeight - length);

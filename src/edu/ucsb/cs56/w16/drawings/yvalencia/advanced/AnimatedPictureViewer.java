@@ -16,8 +16,8 @@ public class AnimatedPictureViewer extends JFrame
     static final double startingY = 83;
     static final double travelSpeed = 1.6;
     static final double travelDistance = 580;
-    static final double scribbleSpeed = 0.7;
-    static final double startingSpineHeight = 300;
+    static final double wobbleSpeed = 0.7;
+    static final double startingSpineHeight = 150;
     
 
     /** constructs a JFrame with an animated picture inside
@@ -40,7 +40,7 @@ public class AnimatedPictureViewer extends JFrame
 	
 	// Instantiate your drawing as a "component"
 	component = new AnimatedPictureComponent(startingX, startingY, travelSpeed,
-						 travelDistance, scribbleSpeed,
+						 travelDistance, wobbleSpeed,
 						 startingSpineHeight);
 	
 	// Always add your component to the frame 
