@@ -75,7 +75,16 @@ public class AnimatedPictureViewer {
 	if(r1==0 && g1==0 && b1==0)
 	    randColor = new Color (255,255,255);
 	g2.setColor(randColor);
-	g2.fillRect(0,0,this.getWidth(), this.getHeight());
+	g2.fillRect(0,0,this.getWidth()/2, this.getHeight());
+
+	int red2 = (int) (Math.random()*x*y %256);
+	int green2 = (int) (Math.random()*x*y %256);
+	int blue2 = (int) (Math.random()*x*y %256);
+	Color randColor1 = new Color (red2,green2,blue2);
+	if(red2==0 && green2==0 && blue2==0)
+	    randColor1 = new Color (255,255,255);
+	g2.setColor(randColor1);
+	g2.fillRect(this.getWidth()/2, 0, this.getWidth(), this.getHeight());
 	
 
 	//signature on my animation
