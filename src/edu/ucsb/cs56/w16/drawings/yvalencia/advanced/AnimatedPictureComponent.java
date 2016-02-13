@@ -35,7 +35,7 @@ import edu.ucsb.cs56.w16.drawings.utilities.GeneralPathWrapper;
 public class AnimatedPictureComponent extends JComponent
 {  
     private Shape person;
-    private double SpineHeight;
+    private double PersonHeight;
     private double scribbleSpeed;
     private double amplitude = 3.2;
     private double travelSpeed;
@@ -44,8 +44,7 @@ public class AnimatedPictureComponent extends JComponent
     private double startingX;
     private double xPos;
     private double startingY;
-    private double width;
-    private double startingLength;
+    private double startingSpineHeight;
     private double t;
     private double angle = 1.75*Math.PI;
     private double travelDistance;
@@ -62,21 +61,19 @@ public class AnimatedPictureComponent extends JComponent
 	across the screen before stopping
 	@param scribbleSpeed the speed at which the person oscillates (or
 	scribbles) back and forth
-	@param startingLength the starting length of the person in pixels
-	@param width the width of the person in pixels
+	@param startingSpineHeight the starting spine height (half the height of the person) of the person in pixels
     */
-    public AnimatedPictureComponent(double startingX, double startingY, double travelSpeed, double travelDistance, double scribbleSpeed, double startingLength, double width) {
+    public AnimatedPictureComponent(double startingX, double startingY, double travelSpeed, double travelDistance, double scribbleSpeed, double startingSpineHeight) {
 	this.startingX = startingX;
 	this.startingY = startingY;
 	this.xPos = startingX;
 	this.travelSpeed = travelSpeed;
 	this.travelDistance = travelDistance;
 	this.scribbleSpeed = scribbleSpeed;
-	this.startingLength = startingLength;
-	this.width = width;
+	this.startingSpineHeight = startingSpineHeight;
 
-	person = new PersonWithCube(this.xPos, this.startingY, this.width, this.startingLength);
-	SpineHeight = ((Person)person).getSpineHeight();
+	person = new PersonWithCube(this.xPos, this.startingY,  this.startingSpineHeight);
+	PersonHeight = 2*startingSpineHeight;
     }
 
     /** The paintComponent method is orverriden to display
@@ -102,10 +99,10 @@ public class AnimatedPictureComponent extends JComponent
 	xPos = xTravel + startingX;
 	double wobble = amplitude*(1/scribbleSpeed)*Math.sin(t) + amplitude*0.8*(1/scribbleSpeed)*Math.sin(0.8*t+1.5);
 	xPos += wobble;
-	double length = (1 - (xTravel/travelDistance))*(startingLength - SpineHeight) + SpineHeight;
-	double yPos = startingYPos + (startingLength - length);
+	double length = (1 - (xTravel/travelDistance))*(startingSpineHeight - PersonHeight) + PersonHeight;
+	double yPos = startingY + (startingSpineHeight - length);
        
-	person = ShapeTransforms.rotatedCopyOf(new PersonWithCube(xPos, yPos, width, length), 0.015*wobble);
+	person = ShapeTransforms.rotatedCopyOf(new PersonWithCube(xPos, yPos, length), 0.015*wobble);
     }    
   
 }

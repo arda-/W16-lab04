@@ -12,13 +12,12 @@ public class AnimatedPictureViewer extends JFrame
 {
     Thread animate;
     AnimatedPictureComponent component;
-    static final double startingXPos = 20;
-    static final double startingYPos = 83;
+    static final double startingX = 20;
+    static final double startingY = 83;
     static final double travelSpeed = 1.6;
     static final double travelDistance = 580;
     static final double scribbleSpeed = 0.7;
-    static final double startingLength = 300;
-    static final double width = 30;
+    static final double startingSpineHeight = 300;
     
 
     /** constructs a JFrame with an animated picture inside
@@ -42,7 +41,7 @@ public class AnimatedPictureViewer extends JFrame
 	// Instantiate your drawing as a "component"
 	component = new AnimatedPictureComponent(startingX, startingY, travelSpeed,
 						 travelDistance, scribbleSpeed,
-						 startingLength, width);
+						 startingSpineHeight);
 	
 	// Always add your component to the frame 
 	// and then make the window visible
