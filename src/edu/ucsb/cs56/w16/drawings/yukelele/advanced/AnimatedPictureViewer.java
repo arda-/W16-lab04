@@ -93,7 +93,7 @@ public class AnimatedPictureViewer {
 			  
 	  g2.setColor(randomColor);
           RubiksCube rc = new RubiksCube(x, y, (25*x %26) + 1);
-	  RubiksCube rc1 = new RubiksCube(x+100, y, (25*x %26) +1);
+	  RubiksCube rc1 = new RubiksCube(680-x, 480-y, (25*x %26) +1);
 
 	    
           g2.draw(rc);
