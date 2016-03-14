@@ -39,7 +39,7 @@ public class AllMyDrawings
 	gl2 = ShapeTransforms.translatedCopyOf(gl2,150,0);
 	
 	// We'll draw this with a thicker stroke
-	Stroke thick = new BasicStroke (4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL);       
+	Stroke thick = new BasicStroke (2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL);       
 	
 	// for hex colors, see (e.g.) http://en.wikipedia.org/wiki/List_of_colors
 	// #002FA7 is "International Klein Blue" according to Wikipedia
