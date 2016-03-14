@@ -25,9 +25,13 @@ public class SoccerField extends Field implements Shape
 {   
     /**
      * Constructor for objects of class SoccerField
+     @param x x coordinate is the top left corner of the field (with y coordinate)
+     @param y y coordinate is the top left corner of the field (with x coordinate)
+     @param width width is the length of the width of the soccer field created 
      */
     public SoccerField(double x, double y, double width)
     {
+
 	super(x,y,width);
 
 	double fieldHeight = 0.5 * width;
